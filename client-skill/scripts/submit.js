@@ -35,7 +35,7 @@ const DEFAULT_FROM = config.default_from || '';
 // ---------------------------------------------------------------------------
 function getHelp() {
   return `
-🦊 thu-epiphany 客户端 — 向亢慕义斋提交灵感
+🦊 thu-epiphany 客户端 — 向学习圈提交灵感
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
   提交灵感:
     submit.js --title "xxx" --thoughts "xxx" [--url "x"] [--from "@name"]
@@ -157,7 +157,7 @@ async function main() {
     });
 
     if (res.status === 200 && res.data.success) {
-      console.log(`✅ 灵感已写入亢慕义斋灵感池!`);
+      console.log(`✅ 灵感已写入灵感池!`);
       console.log(`   标题: ${res.data.entry?.title || title}`);
       console.log(`   区块: ${res.data.blocks} 个`);
     } else if (res.status === 401) {

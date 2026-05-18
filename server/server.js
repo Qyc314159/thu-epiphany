@@ -9,7 +9,7 @@
  *   GET  /api/status        状态概览
  *
  * 令牌验证：读取 tokens.json，Bearer Token 鉴权。
- * 飞书写入：用 Bot 凭据直接 patch 到亢慕义斋文档的灵感池区块。
+ * 飞书写入：用 Bot 凭据直接 patch 到共享文档的灵感池区块。
  *
  * 用法:
  *   node scripts/thu-epiphany-server.js              # 默认端口 18999
@@ -457,7 +457,7 @@ function serveLandingPage(req, res) {
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>亢慕义斋 · 思维顿悟学习圈</title>
+<title>🦊 thu-epiphany · 思维顿悟学习圈</title>
 <style>
   * { margin: 0; padding: 0; box-sizing: border-box; }
   body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #0f0f0f; color: #e0e0e0; line-height: 1.6; }
@@ -484,7 +484,7 @@ function serveLandingPage(req, res) {
 </head>
 <body>
 <div class="container">
-  <h1>🦊 亢慕义斋</h1>
+  <h1>🦊 thu-epiphany</h1>
   <p class="subtitle">AI 加持的分布式学习圈 · 思维顿悟的存档与碰撞</p>
 
   <div class="status-grid">
@@ -526,8 +526,8 @@ function serveLandingPage(req, res) {
   </div>
 
   <div class="footer">
-    <p>清华大学 · 亢慕义斋 · 灵感永不眠</p>
-    <p>Built by 沙漠之狐 🦊 for YC 元帅</p>
+    <p>thu-epiphany · 灵感永不眠</p>
+    <p>thu-epiphany · 开源学习圈系统</p>
   </div>
 </div>
 <script>
