@@ -99,7 +99,8 @@ node <技能路径>/scripts/submit.js --status
 
 ## ⚙️ 配置
 
-编辑 `scripts/config.js`：
+1. 将 `scripts/config.example.js` 复制为 `scripts/config.js`
+2. 编辑 `scripts/config.js`，填入以下三项：
 
 ```javascript
 module.exports = {
