@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>灵感捕获器</title>
+  <style>
+    :root {
+      --fox: #e88020;
+      --fox-dark: #c66a10;
+      --bg: #1a1a2e;
+      --card: #16213e;
+      --text: #e0e0e0;
+      --text-dim: #888;
+      --border: #2a2a4a;
+      --success: #4caf50;
+      --error: #f44336;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      width: 400px;
+      min-height: 320px;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Noto Sans SC', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      font-size: 14px;
+    }
+
+    .container { padding: 16px; }
+
+    .header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 16px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .header h1 {
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--fox);
+    }
+
+    .header .badge {
+      font-size: 11px;
+      background: var(--fox);
+      color: #fff;
+      padding: 2px 8px;
+      border-radius: 10px;
+    }
+
+    .page-info {
+      background: var(--card);
+      border-radius: 8px;
+      padding: 10px 12px;
+      margin-bottom: 12px;
+      border: 1px solid var(--border);
+    }
+
+    .page-info .label {
+      font-size: 11px;
+      color: var(--text-dim);
+      margin-bottom: 4px;
+    }
+
+    .page-info .value {
+      font-size: 13px;
+      word-break: break-all;
+      line-height: 1.4;
+    }
+
+    .page-info .value.url {
+      color: #64b5f6;
+      font-size: 12px;
+    }
+
+    .form-group {
+      margin-bottom: 12px;
+    }
+
+    .form-group label {
+      display: block;
+      font-size: 12px;
+      color: var(--text-dim);
+      margin-bottom: 4px;
+    }
+
+    textarea {
+      width: 100%;
+      height: 120px;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      color: var(--text);
+      padding: 10px;
+      font-size: 13px;
+      font-family: inherit;
+      resize: vertical;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+
+    textarea:focus {
+      border-color: var(--fox);
+    }
+
+    textarea::placeholder {
+      color: #555;
+    }
+
+    .actions {
+      display: flex;
+      gap: 8px;
+    }
+
+    .btn {
+      flex: 1;
+      padding: 10px 16px;
+      border: none;
+      border-radius: 8px;
+      font-size: 14px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .btn:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+
+    .btn-primary {
+      background: var(--fox);
+      color: #fff;
+    }
+
+    .btn-primary:hover:not(:disabled) {
+      background: var(--fox-dark);
+    }
+
+    .btn-secondary {
+      background: var(--card);
+      color: var(--text);
+      border: 1px solid var(--border);
+    }
+
+    .btn-secondary:hover:not(:disabled) {
+      background: #1e2a4a;
+    }
+
+    .status {
+      margin-top: 10px;
+      padding: 8px 12px;
+      border-radius: 8px;
+      font-size: 13px;
+      display: none;
+    }
+
+    .status.success {
+      display: block;
+      background: rgba(76, 175, 80, 0.15);
+      color: var(--success);
+      border: 1px solid rgba(76, 175, 80, 0.3);
+    }
+
+    .status.error {
+      display: block;
+      background: rgba(244, 67, 54, 0.15);
+      color: var(--error);
+      border: 1px solid rgba(244, 67, 54, 0.3);
+    }
+
+    .status.loading {
+      display: block;
+      background: rgba(232, 128, 32, 0.1);
+      color: var(--fox);
+      border: 1px solid rgba(232, 128, 32, 0.3);
+    }
+
+    .footer {
+      margin-top: 12px;
+      text-align: center;
+      font-size: 11px;
+      color: var(--text-dim);
+    }
+
+    .counter {
+      font-size: 11px;
+      color: var(--text-dim);
+      margin-top: 8px;
+      text-align: right;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <h1>🦊 灵感捕获器</h1>
+      <span class="badge" id="circleBadge">学习圈</span>
+    </div>
+
+    <div class="page-info">
+      <div class="label">📄 当前页面</div>
+      <div class="value" id="pageTitle">加载中...</div>
+      <div class="value url" id="pageUrl"></div>
+    </div>
+
+    <div class="form-group">
+      <label for="thoughts">💬 你的感想 / 灵感</label>
+      <textarea id="thoughts" placeholder="看完这篇网页，你有什么想法？&#10;比如：这个思路可以借鉴... 我想做类似的事情... 这里有个值得研究的问题..."></textarea>
+    </div>
+
+    <div class="actions">
+      <button class="btn btn-primary" id="btnSend">🚀 发送到灵感池</button>
+    </div>
+
+    <div class="status" id="status"></div>
+    <div class="counter" id="counter"></div>
+    <div class="footer" id="footerText">灵感会同步到学习圈 · 需要运行 thu-epiphany 服务</div>
+  </div>
+
+  <script src="config.js"></script>
+  <script src="popup.js"></script>
+</body>
+</html>

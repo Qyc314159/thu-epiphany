@@ -1,0 +1,27 @@
+{
+  "manifest_version": 3,
+  "name": "🦊 灵感捕获器",
+  "version": "1.0",
+  "description": "一键捕获网页灵感，发送到学习圈的灵感池。需要搭配 thu-epiphany 服务端使用。",
+  "permissions": [
+    "activeTab",
+    "storage"
+  ],
+  "host_permissions": [
+    "http://localhost:18999/*",
+    "https://*/api/inspiration"
+  ],
+  "action": {
+    "default_popup": "popup.html",
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "48": "icons/icon48.png",
+      "128": "icons/icon128.png"
+    }
+  },
+  "icons": {
+    "16": "icons/icon16.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  }
+}
