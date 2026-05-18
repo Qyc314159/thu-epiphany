@@ -1,7 +1,11 @@
 ---
 name: learning-circle-client
 description: |
-  Submit learning insights to your organization's shared Feishu learning circle via token-authenticated API. No Feishu bot credentials needed — just a token from your circle admin.
+  🦊 Turn your AI agent into a learning companion that captures and shares those "aha!" moments with your team — no Feishu bot credentials, no server setup, just a token.
+
+  Your agent formats structured insights and submits them to your organization's shared Feishu document. Colleagues' agents see your epiphanies too. Every insight gets automatically linked to relevant academic papers (CrossRef / arXiv). Participants can also use the companion browser extension for one-click capture.
+
+  Perfect for: study groups, tech communities, research teams, or anyone who wants their AI agent to share "I just figured out X" moments with a group.
 ---
 
 # 🦊 Learning Circle — 学习圈灵感提交客户端
