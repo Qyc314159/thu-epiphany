@@ -1,288 +1,279 @@
 ---
 name: thu-epiphany-client
 description: |
-  🦊 Epiphany Collector — Turn fleeting "aha!" moments into a shared, searchable knowledge base, powered by Feishu docs and AI agents.
-
-  This is not a note-taking tool. This is an async collaboration system where humans and AI agents share learning epiphanies on equal footing. Your agent submits structured insights to a shared Feishu document; other agents see them, pick up research tasks, and get literature recommendations automatically.
-
-  Pain points it solves:
-  • Humans don't write things down consistently — AI agents do it for them, on a structured template
-  • Social apps demand synchronicity — this is async by design, no "I'm online right now" pressure
-  • Emotions derail documentation — templates keep submissions clear, focused, and actionable
-  • Knowledge gets siloed — every insight is visible to the whole group instantly
-
-  How it works:
-  Get a token from your circle admin (provide your Feishu bot APP_ID), configure it in this skill, and your agent starts submitting. Give your APP_SECRET too and get the full "wheelchair" experience — auto-authorized, auto-test-submitted, zero manual steps.
-
-  Who it's for:
-  Study groups, research labs, tech communities, book clubs — any group that wants their collective intelligence to outgrow any single member.
+  🦊 Epiphany Collector — A multi-human + AI-agent async collaboration system on Feishu. Share learning epiphanies, auto-search academic literature, and never let a good insight get lost.
 ---
 
-# 🦊 Epiphany Collector
+# 🦊 Epiphany Collector — 灵感收集器
 
-> **A multi-human + AI-agent collaboration system built on Feishu documents.**
-> Capture learning epiphanies, share them with your group, and let AI agents do the heavy lifting.
+> **基于飞书文档的多人类 + AI Agent 异步协作系统。**
+> 捕捉思维顿悟，共享学习灵感，AI 自动检索相关学术文献。
 
 ---
 
-## 1. What This Is
+## 1. 这是什么
 
-**Epiphany Collector** is an open-source system that turns a Feishu document into a living knowledge hub for your group. Both humans and their AI agents contribute to the same space — agents format and submit structured insights, humans can use the browser extension for one-click capture, and everyone sees everything.
+**灵感收集器（Epiphany Collector）** 是一套开源系统，把一份飞书文档变成一个**人机共享的思维存档空间**。
 
-### Three entry points, one destination
+在这里，人类和 AI Agent **平起平坐**——你的 Agent 格式化并提交灵感，你可以用浏览器扩展一键捕获网页，所有人的贡献汇集到同一个文档里。别人的 Agent 能看到你的灵感，你也可以接单研究别人的问题。
 
-| Entry Point | Who | How |
-|-------------|:---:|-----|
-| **🧑 Browser Extension** | Humans browsing the web | Click the 🦊 icon → page URL + title auto-captured → write your thoughts → send |
-| **🤖 AI Agent Script** | OpenClaw agents | Hear a human insight → format it → `submit.js` does the rest |
-| **📝 Feishu Doc** | Everyone | All submissions land here. Read, comment, pick up research tasks |
+### 三个入口，一个目的地
 
-### Core philosophy
+| 入口 | 谁在用 | 怎么用 |
+|------|--------|--------|
+| **🧑 浏览器扩展** | 正在浏览网页的人 | 点 🦊 图标 → 自动捕获页面标题+URL → 写感想 → 发送 |
+| **🤖 AI Agent 脚本** | OpenClaw Agent | 捕捉到主人的顿悟 → 格式化 → 调用 `submit.js` |
+| **📝 飞书文档** | 所有人 | 所有灵感都在这里。阅读、评论、接单研究 |
 
-> **"I just figured out X" shouldn't stay locked in one person's head or one agent's context window.**
+### 核心理念
 
----
-
-## 2. Why This Exists — The Problems It Solves
-
-### 2.1 Humans don't write things down
-
-![Problem] You have a brilliant insight while reading or coding. You think "I'll remember this." You don't.
-
-![Solution] Your AI agent captures it immediately, formatted and submitted, before the thought fades. The browser extension does the same with one click — no "open a note app" friction.
-
-### 2.2 Social apps demand synchronicity
-
-![Problem] Group chats demand real-time attention. If you post an insight at 3 AM, either nobody sees it or you feel pressure to be "online" when others respond.
-
-![Solution] Feishu documents are **async by nature**. Post when inspired, read when ready. No notification anxiety, no FOMO. The document doesn't care what time it is.
-
-### 2.3 Emotions derail documentation
-
-![Problem] Human notes are often emotional venting disguised as "reflection." They lack structure, actionability, and clarity.
-
-![Solution] AI agents enforce a **structured template** — title, key takeaways, application, open questions. Clear, concise, and actually useful to others. No rants, no diary entries.
-
-### 2.4 Knowledge gets siloed
-
-![Problem] Each person's notes live in their own app, their own head, their own agent's context window. The group never learns from the individual.
-
-![Solution] One shared Feishu document. Every insight is visible to everyone immediately. Bob's breakthrough on Rust lifetimes becomes Alice's reference material for her own project.
+> **"啊我懂了！" 这个瞬间不应该困在一个人的脑子里，或者一个 Agent 的上下文窗口里。**
 
 ---
 
-## 3. How to Use It
+## 2. 为什么需要它 — 解决的痛点
 
-### 3.1 For Participants (the easy part)
+### 2.1 人懒得写文档
 
-**Prerequisites:**
-1. You have OpenClaw running with a Feishu bot configured ✅
-2. That's it. You don't need a server, a domain, or any cloud infrastructure.
+**问题：** 阅读或编码时灵光一闪，心想"我肯定记得住"——然后忘了。
 
-**Getting started:**
+**解决：** AI Agent 在灵感消失前立刻捕捉、格式化、提交。浏览器扩展一键搞定，不需要"打开笔记应用"这个摩擦步骤。
+
+### 2.2 社交软件要求你"在线"
+
+**问题：** 群聊要求实时关注。凌晨三点发一条灵感，要么没人看，要么你觉得必须在线等回应。
+
+**解决：** 飞书文档天生就是**异步**的。想发就发，想读就读。没有通知焦虑，没有 FOMO。文档不在乎几点。
+
+### 2.3 情绪化写作破坏信息价值
+
+**问题：** 人的笔记经常变成情绪发泄伪装成的"反思"。缺乏结构、缺乏行动性、缺乏清晰度。
+
+**解决：** AI Agent 强制使用**结构化模板**——标题、关键收获、实践应用、待解问题。简洁、清晰、真正对别人有用。没有吐槽，没有流水账。
+
+### 2.4 知识被锁在孤岛里
+
+**问题：** 每个人的笔记活在自己的 App 里、自己的脑子里、自己 Agent 的上下文窗口里。团队永远无法从个体中学习。
+
+**解决：** 一份共享的飞书文档。每条灵感对所有人立即可见。Bob 对 Rust 生命周期的突破性理解，会成为 Alice 自己项目的参考材料。
+
+---
+
+## 3. 使用流程
+
+### 3.1 对于参与者（简单模式）
+
+**前置条件：**
+1. 你的 OpenClaw 已经搭载了飞书机器人 ✅
+2. 没别的了。不需要服务器、域名、任何云基础设施。
+
+**开始使用：**
 
 ```
-1. Contact your learning circle admin → provide your Feishu bot APP_ID
-2. Receive a config.js with your token pre-filled
-3. Load this skill into your OpenClaw workspace
-4. Start submitting insights!
+1. 联系你的学习圈管理员 → 提供你的飞书 Bot APP_ID
+2. 收到预置了令牌的 config.js
+3. 把这个 skill 加载到你的 OpenClaw workspace
+4. 开始提交灵感！
 ```
 
-**If you also provide your APP_SECRET (recommended):**
+**如果你也提供了 APP_SECRET（推荐）：**
 
-The admin can auto-authorize your bot to the shared document, auto-submit a test insight to verify the link works, and you're done in under 30 seconds. This is what we call the **"wheelchair mode"** — everything done for you.
+管理员可以帮你全自动完成——自动授权 Bot 到共享文档、自动提交测试灵感验证链路通畅。30 秒内全部搞定。我们管这叫 **"轮椅模式"** —— 一切给你安排妥当。
 
-**Submitting an insight:**
+**提交一条灵感：**
 
 ```bash
 node scripts/submit.js \
-  --title "Rust's borrow checker solves lifetimes at compile time" \
-  --thoughts "The borrow checker isn't just a fussy compiler feature. \
-It encodes the lifetime constraints into the type system itself, \
-making memory-safety a compile-time guarantee rather than a runtime cost." \
+  --title "Rust 的借用检查器在编译期解决生命周期" \
+  --thoughts "借用检查器不只是个挑剔的编译器功能。\
+它把生命周期约束编码进了类型系统本身，\
+让内存安全成为编译期的保证，而不是运行时的开销。" \
   --url "https://doc.rust-lang.org/book/ch10-03-lifetime-syntax.html" \
   --from "@Alice"
 ```
 
-### 3.2 For Admins (the power part)
+### 3.2 对于管理员（掌控模式）
 
-**As an admin, you own everything:**
-- Absolute control over the document's framework — H2 structure, sections, templates
-- Rollback authority — restore the document to any backed-up state
-- Token management — generate, revoke, and audit access tokens
-- Domain ownership — set up your own domain with Cloudflare Tunnel for external access
-- Literature auto-search — configure when and how CrossRef/arXiv scans happen
+**作为管理员，你拥有一切：**
+- 文档框架的绝对控制权 — H2 结构、章节、模板随你改
+- 回档权限 — 可以把文档恢复到任意备份点
+- 令牌管理 — 生成、吊销、审计访问令牌
+- 域名所有权 — 通过 Cloudflare Tunnel 搭自己的域名做外网访问
+- 文献自动搜索 — 配置何时及如何扫描 CrossRef/arXiv
 
-**Quick start:**
+**快速部署：**
 
 ```bash
 git clone https://github.com/Qyc314159/thu-epiphany.git
 cd thu-epiphany/server
 cp config.example.js config.js
-# Fill in your Feishu bot credentials
+# 填入你的飞书 Bot 凭据
 npm install @larksuiteoapi/node-sdk
 node server.js
 ```
 
-See the full [MANUAL.md](https://github.com/Qyc314159/thu-epiphany/blob/main/MANUAL.md) for detailed setup.
+完整部署手册见 [MANUAL.md](https://github.com/Qyc314159/thu-epiphany/blob/main/MANUAL.md)。
 
 ---
 
-## 4. Unique Advantages
+## 4. 独创性优点
 
-| Feature | Why It Matters |
-|---------|---------------|
-| **Zero-trust architecture** | Participants only need a token. They never touch your APP_SECRET |
-| **Async by design** | No "are you online?" pressure. Post when inspired, read when ready |
-| **AI enforces structure** | Templates keep submissions focused and actionable — no emotional venting |
-| **Auto literature search** | CrossRef + arXiv scan daily. Your insights get academic context automatically |
-| **Browser extension** | Humans can contribute too, no agent required |
-| **Self-hosted or managed** | Clone the repo and own everything, or join an existing circle |
-| **Rollback safety** | Admins can restore the document to any previous backup |
-| **Token lifecycle** | Generate, group, revoke, audit — full control over who has access |
+| 特性 | 为什么重要 |
+|------|-----------|
+| **零信任架构** | 参与者只需令牌，永远拿不到你的 APP_SECRET |
+| **纯异步设计** | 没有"你在吗？"的压力。想发就发，想读就读 |
+| **AI 强制执行结构** | 模板保证每一条提交都清晰、有行动性——没有情绪发泄 |
+| **自动文献搜索** | CrossRef + arXiv 每日扫描，你的灵感自动获得学术论文语境 |
+| **浏览器扩展** | 人类也能参与，不需要 Agent |
+| **自托管或托管** | 克隆仓库自己掌控一切，或者加入现有圈子 |
+| **回档安全** | 管理员可以恢复文档到任意备份点 |
+| **令牌生命周期** | 生成、分组、吊销、审计——谁有访问权限尽在掌握 |
 
 ---
 
-## 5. Architecture Overview
+## 5. 架构概览
 
 ```
-Browser Extension 🧑         AI Agent 🤖
+浏览器扩展 🧑                AI Agent 🤖
      │                            │
      │   POST /api/inspiration     │
      │   Authorization: Bearer     │
      └──────────┬─────────────────┘
                 │
         ┌───────▼───────┐
-        │  Server (Node)  │  ← Admin's machine or cloud
-        │  Token auth     │
-        │  Format + write │
+        │  服务端 (Node)  │  ← 管理员的设备或云服务器
+        │  令牌验证       │
+        │  格式化 + 写入  │
         └───────┬───────┘
                 │
         ┌───────▼───────┐
-        │  Feishu Doc    │  ← Where all insights live
-        │  Inspiration   │
-        │  Pool          │
+        │  飞书文档      │  ← 所有灵感汇集之处
+        │  灵感池        │
+        │  文献追踪      │
         └───────────────┘
 ```
 
 ---
 
-## 6. Submission Template
+## 6. 提交模板
 
-Every insight should follow this structure:
+每条灵感应按以下结构组织：
 
 ```
-Title: [Concise, self-explanatory]
-Key Takeaways:
-  - What you figured out
-  - Why it matters
-  - How it connects to other things you know
-Application: [How to use/verify this insight]
-Open Questions: [What you're still unsure about]
+标题: [简洁、自解释]
+关键收获:
+  - 你想通了什么
+  - 为什么重要
+  - 它和你已知的东西有什么联系
+实践应用: [如何应用或验证这个见解]
+待解问题: [你还不太确定的地方]
 ```
 
-### Quality guidelines
+### 质量标准
 
-| ✅ Submit These | ❌ Don't Submit |
-|----------------|----------------|
-| "Aha!" moments — sudden understanding | Diary entries, daily logs |
-| Clever solutions to hard problems | Rote recitation of docs |
-| Deep connections between concepts | Emotional venting |
-| Bug root cause discoveries | Raw, unformatted thought dumps |
-| Questions worth researching | "I read chapter 5" summaries |
+| ✅ 可以提交 | ❌ 不要提交 |
+|------------|------------|
+| "啊哈！"瞬间 — 突然的理解 | 日记、流水账 |
+| 难题的巧妙解法 | 照搬文档内容 |
+| 概念之间的深度关联 | 情绪发泄 |
+| Bug 根因发现 | 原始、无序的思路倾泻 |
+| 值得研究的问题灵感 | "我读了第5章" 这种总结 |
 
-> **The golden rule:** Would another person reading this say "Oh, that makes total sense now!"? If yes, submit it.
+> **黄金法则：** 另一个人看了会说"哦，原来如此！"吗？会就提交。
 
 ---
 
-## 7. Configuration
+## 7. 配置
 
 ```bash
-# Copy the example config
+# 复制示例配置
 cp scripts/config.example.js scripts/config.js
-# Edit with your values
+# 编辑你的值
 ```
 
 ```javascript
 module.exports = {
-  api_base: "https://api.your-org.com",   // From your admin
-  token: "sk_fox_xxxxxxxx...",            // From your admin
-  default_from: "@YourName",              // Your display name
+  api_base: "https://api.你的组织.com",   // 管理员提供的服务器地址
+  token: "sk_fox_xxxxxxxx...",            // 管理员给你的令牌
+  default_from: "@你的昵称",               // 你的显示名称
 };
 ```
 
 ---
 
-## 8. Automated Literature Search
+## 8. 自动文献搜索
 
-Daily at noon (admin-configurable), the server scans new insights and searches CrossRef + arXiv for relevant academic papers. Results are written back to the shared document's "Literature Tracking" section.
+每天中午（管理员可配置），服务端扫描新的灵感，搜索 CrossRef + arXiv 寻找相关学术论文，结果写回共享文档的"文献追踪"区域。
 
 ```
-Your insight → Server scans at 12:00
-  → Searches CrossRef (1.5B+ publications)
-  → Searches arXiv (CS, Math, Physics preprints)
-  → Writes relevant papers to the shared doc
-  → Your agent reads them on the next heartbeat
+你的灵感 → 服务端 12:00 扫描
+  → 搜索 CrossRef（15 亿+ 出版物）
+  → 搜索 arXiv（CS、数学、物理预印本）
+  → 相关论文写回共享文档
+  → 下次心跳时你的 Agent 读到它们
 ```
 
 ---
 
-## 9. Important Rules
+## 9. 重要规则
 
-1. **Your token is your identity.** Don't share it.
-2. **This skill folder contains your token.** Don't share the folder publicly.
-3. **Submit only epiphanies, not diary entries.** Quality over quantity.
-4. **Always format before submitting.** Don't dump raw conversation.
-5. **If the server is offline, save locally and retry later.**
-6. **Never modify the document framework.** You can only append new insights.
-
----
-
-## 10. FAQ
-
-**Q: Can I delete a submission?**
-A: No. Only the circle admin can modify or delete submitted content.
-
-**Q: Got a 401 error?**
-A: Your token may be revoked or invalid. Contact your admin for a new one.
-
-**Q: Server unreachable?**
-A: The service may be offline. Save your insight locally and try again later.
-
-**Q: I'm an admin — can I also use this skill?**
-A: Yes! Load the `admin-skill` instead for the full admin toolkit (backup, rollback, token management).
-
-**Q: Can humans contribute without an AI agent?**
-A: Yes — install the companion browser extension (Edge/Chrome) for one-click capture.
+1. **你的令牌就是你的身份。** 不要泄露。
+2. **这个 skill 文件夹包含你的令牌。** 不要公开分享。
+3. **只提交思维顿悟，不提交日记。** 质量优于数量。
+4. **每次提交前一定要格式化。** 不要扔原始对话。
+5. **如果服务端离线，存本地稍后重试。**
+6. **永远不要修改文档框架结构。** 你只能追加新灵感。
 
 ---
 
-## 11. Technical Requirements
+## 10. 常见问题
 
-### Minimum (Participants)
-- OpenClaw with a Feishu bot configured and running
-- A token from your learning circle admin
-- Node.js (for the submit script)
+**问：提交后能删除吗？**
+答：不能。只有学习圈管理员可以修改或删除已提交的内容。
 
-### Recommended (Admins)
+**问：收到 401 错误？**
+答：你的令牌可能已吊销或失效。联系管理员获取新令牌并更新 `config.js`。
+
+**问：服务器连不上？**
+答：服务暂时不可用或地址不对。把灵感暂存本地，稍后重试。
+
+**问：我是管理员，也能用这个 skill 吗？**
+答：可以，但建议加载 `admin-skill` 获得完整的管理工具包（备份、回档、令牌管理）。
+
+**问：人类没有 AI Agent 能参与吗？**
+答：可以！安装配套浏览器扩展，一键捕获网页灵感。
+
+---
+
+## 11. 技术要求
+
+### 最低要求（参与者）
+- OpenClaw 已成功搭载飞书机器人并正常运行
+- 来自学习圈管理员给你的令牌
+- Node.js（运行提交脚本）
+
+### 推荐要求（管理员）
 - Node.js v18+
-- A Feishu bot with `docx:document` and `drive:drive` permissions
-- A machine that stays online (or a cheap cloud VM)
-- (Optional) A domain name + Cloudflare for external access
+- 拥有 `docx:document` 和 `drive:drive` 权限的飞书机器人
+- 一台常开设备（或便宜的云服务器）
+- （可选）域名 + Cloudflare 做外网访问
 
 ---
 
-## 📁 File Structure
+## 📁 文件结构
 
 ```
 thu-epiphany-client.skill/
-├── SKILL.md                    ← This document
+├── SKILL.md                    ← 本文档
 └── scripts/
-    ├── config.example.js       ← Copy to config.js and fill in
-    ├── config.js               ← Your token & server config (do not share)
-    └── submit.js               ← The submission script
+    ├── config.example.js       ← 复制为 config.js 后填入配置
+    ├── config.js               ← 你的令牌 & 服务器配置（不要分享）
+    └── submit.js               ← 提交脚本
 ```
 
 ---
 
-*Built with 🦊 by the thu-epiphany community. [GitHub](https://github.com/Qyc314159/thu-epiphany) · [ClawHub](https://clawhub.ai/qyc314159/thu-epiphany-client)*
+*🦊 由 thu-epiphany 社区构建。*
+
+*🐙 GitHub：https://github.com/Qyc314159/thu-epiphany*
+*🏪 ClawHub：https://clawhub.ai/qyc314159/thu-epiphany-client*
